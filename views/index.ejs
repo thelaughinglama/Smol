@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <p>html</p>
-    <form action="" method="post">
-        <label for="urlshrinker"></label>
-        <input type="url" name="urlshrinker" id="fullurl">
-        <button type="submit">Shrink</button>
+    <div class="container">
+       <h1 class="center-align">URL SHRINKER</h5>
+    <form action="/smol" method="post">
+        <label for="fullurl">Full URL</label>
+        <input  type="url" name="urlshrinker" id="fullurl" class="validate s6">
+        
+
+        <button class="btn waves-effect waves-light center-align z-depth-5" type="submit">Shrink</button>
 
     </form>
-<table>
+<table class="striped centered responsive-table highlight">
     <thead>
         <tr>
         <th>full</th>
@@ -31,10 +39,11 @@
         </td>
         <td>
             10
+
         </td>
     </tr>
     </tbody>
 </table>    
-    
+</div>
 </body>
 </html>
