@@ -23,7 +23,18 @@ await shorturl.create({full:req.body.urlshrinkerr})
 res.redirect('/')
 
 })
+app.get('/:shorturl',async (req,res)=>{
+const shorturls=await shorturl.findOne({short:req.params.shorturl});
+console.log(req.params.shorturl)
+if(shorturls==null){
+    return res.sendStatus(404);
+}
+shorturls.count++;
+shorturls.save();
+console.log(shorturls.count)
+res.redirect(shorturls.full);
 
+})
 app.listen(process.env.PORT||5000,()=>{
 
     console.log("server started");
