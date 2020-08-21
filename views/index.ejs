@@ -10,38 +10,97 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+<style>
+    .center1{
+        margin-left: 40%;
+  margin-top:3%;
+  margin-bottom:5%;
+ 
+ 
+    }
+
+/* bigshot one font */
+@import url(https://fonts.googleapis.com/css?family=Cabin+Condensed);
+
+
+
+svg{font-weight:bold;max-width:100%;
+    height: 100%;
+}
+
+    
+</style>
+<script>
+    var h1 = document.querySelector("h1");
+
+h1.addEventListener("input", function() {
+    this.setAttribute("data-heading", this.innerText);
+});
+</script>
 <body>
+    
     <div class="container">
-       <h1 class="center-align">URL SHRINKER</h5>
+        <svg viewbox="0 0 100 20">
+            <defs>
+              <linearGradient id="gradient">
+                <stop color="#000"/>
+              </linearGradient>
+              <pattern id="wave" x="0" y="-0.5" width="100%" height="100%" patternUnits="userSpaceOnUse">
+                <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="url(#gradient)"> 
+                  <animateTransform
+                      attributeName="transform"
+                      begin="0s"
+                      dur="1.5s"
+                      type="translate"
+                      from="0,0"
+                      to="40,0"
+                      repeatCount="indefinite" />
+                </path>
+              </pattern>
+            </defs>
+            <text text-anchor="middle" x="50" y="15" font-size="17" fill="white" fill-opacity="0.1">SMOL</text>
+            <text text-anchor="middle" x="50" y="15" font-size="17" fill="url(#wave)"  fill-opacity="1">SMOL</text>
+          </svg>
+                  <div class="container col s6">
     <form action="/smol" method="post">
-        <label for="fullurl">Full URL</label>
-        <input  type="url" name="urlshrinker" id="fullurl" class="validate s6">
+        <!-- <label for="fullurl">Full URL</label>
+        <input  required type="url" name="urlshrinker" id="fullurl" class="validate "> -->
+        <div class="input-field col s12">
+            <input required id="fullurl" type="url" name="urlshrinker" class="validate">
+            <label for="fullurl">Full URL</label>
+          </div>
         
-
-        <button class="btn waves-effect waves-light center-align z-depth-5" type="submit">Shrink</button>
-
+<div class="center1">
+        <button class="btn waves-effect waves-light  z-depth-5 " type="submit">Shrink</button>
+    </div>
     </form>
+</div>
 <table class="striped centered responsive-table highlight">
     <thead>
         <tr>
-        <th>full</th>
-        <th>short</th>
-        <th>click</th>
+        <th>Your URL</th>
+        <th>Shrinked URL</th>
+        <th>Visits</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-        <td>
-            <a href="https://www.google.com">google.com</a>
-        </td>
-        <td>
-            <span>abcd</span>
-        </td>
-        <td>
-            10
+      
+        <% data.forEach(shorturl=>{ %> 
+            <tr>
+                <td>
+                    <a href="<%= shorturl.full %> "><%= shorturl.full %> </a>
+                </td>
+                <td>
+                    <a href="<%= shorturl.short %> " target="_blank"><%= shorturl.short %> </a>
+                </td>
+                <td>
+                    <%= shorturl.count %> 
+        
+                </td>
+            </tr>
 
-        </td>
-    </tr>
+       <% })%>
+      
     </tbody>
 </table>    
 </div>
