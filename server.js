@@ -10,10 +10,22 @@ mongoose.connect('mongodb://localhost/smol',{
    useNewUrlParser:'false',useUnifiedTopology:'true' 
 });
 app.use(express.urlencoded({extended:false}));
+app.use(express.static(__dirname + '/public'));
 app.get('/',async(req,res)=>{
 //res.send("app started ");
 const data= await shorturl.find({});
-console.log(data);
+//console.log(data);
+
+data.forEach(e=>{
+    if(e.full.length>60){
+        
+            e.newfull=e.full.substring(0,60)+"....";
+        
+    }
+})
+data.forEach(e=>{
+    console.log(e.newfull)
+})
 res.render('index',{data:data});
    // res.redirect('/');
 });
