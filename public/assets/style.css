@@ -1,61 +1,68 @@
-
-    .center1{
-        margin-left: 40%;
-  margin-top:3%;
-  margin-bottom:5%;
- 
- 
-    }
-    .margindiv{
-        display:block;
-        min-height:30vh;
-        max-width: 100%;
-    } 
- 
 /* bigshot one font */
 @import url(https://fonts.googleapis.com/css?family=Cabin+Condensed);
 @import url(https://fonts.googleapis.com/css2?family=Comfortaa);
-body,html{margin:0;padding:0;height:100%;}
-body{
+
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
   background: #f1f1f1;
-  background-size:cover;
- /* font-family: 'Cabin Condensed', sans-serif;*/ 
-display:flex; 
- flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  background-size: cover;
+   font-family: 'Cabin Condensed', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
-#note{
-  margin: 20px 0;
-  padding-left: 1.5rem;
-  border-left: 5px solid #253441!important; 
-}
-#successmsg{
-  margin: 20px 0;
-  padding-left: 1.5rem;
-  border-left: 5px solid #21b921!important;
-}
-#errormsg{
-  margin: 20px 0;
-  padding-left: 1.5rem;
-  border-left: 5px solid #da0707!important;
-}
-svg{font-weight:bold;max-width:100%;
-    height: 70%;
-   
+.center1 {
+  margin-left: 40%;
+  margin-top: 3%;
+  margin-bottom: 5%;
 }
 
-    .child {
-  
+.margindiv {
+  display: block;
+  min-height: 30vh;
+  max-width: 100%;
+}
+
+#note {
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #253441 !important;
+}
+
+#successmsg {
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #21b921 !important;
+}
+
+#errormsg {
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #da0707 !important;
+}
+
+svg {
+  font-weight: bold;
+  max-width: 100%;
+  height: 70%;
+
+}
+
+.child {
   position: absolute;
-  
-left:45%;
+  left: 45%;
   transform: translate(0%, -50%);
+}
 
+.fulldiv {
+  height: 100vh;
 }
-.fulldiv{
-    height:100vh;
-}
-    
