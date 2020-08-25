@@ -10,11 +10,14 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     
-
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
- 
+ <script src="../assets/script.js"></script>
 
 </head>
 
@@ -28,11 +31,11 @@
                 <stop color="#000"/>
               </linearGradient>
               <pattern id="wave" x="0" y="-0.5" width="100%" height="100%" patternUnits="userSpaceOnUse">
-                <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="url(#gradient)"> 
+                <path id="wavePath" d="M-40 9 Q-30 7 -20 12 T0 14 T20 14 T40 14 T60 14 T80 14 T100 14 T120 14 V20 H-40z" mask="url(#mask)" fill="url(#gradient)"> 
                   <animateTransform
                       attributeName="transform"
                       begin="0s"
-                      dur="1.5s"
+                      dur="2.5s"
                       type="translate"
                       from="0,0"
                       to="40,0"
@@ -40,12 +43,16 @@
                 </path>
               </pattern>
             </defs>
-            <text text-anchor="middle" x="50" y="15" font-size="12" fill="white" fill-opacity="0.1">SMOL</text>
-            <text text-anchor="middle" x="50" y="15" font-size="12" fill="url(#wave)"  fill-opacity="1">SMOL</text>
+            <text text-anchor="middle" x="50" y="20" font-size="19" fill="black" fill-opacity="0.1">SMOL</text>
+            <text text-anchor="middle" x="50" y="20" font-size="19" fill="url(#wave)"  fill-opacity="1">SMOL</text>
+            <text text-anchor="middle" x="28" y="25" font-size="6" fill="black"  fill-opacity="1">your personal </text>
+            <text text-anchor="middle" x="66" y="25" font-size="6" fill="orange"  fill-opacity="0.6">url shortner</text>
+
+
           </svg>
-          <a href="#margindiv"class="btn-floating pulse btn-large waves-effect waves-light black child"><i class="material-icons">content_cut</i></a>
-          <div class="margindiv" id="margindiv"><br><br><blockquote>
-            <span class="blue-grey-text darken-1">You can find your shrinked url at the bottom of the list</span>
+          <button class="btn-floating pulse btn-large waves-effect waves-light black child" onclick="smoothScroll(document.getElementById('margindiv'))"><i class="material-icons">content_cut</i></button >
+          <div class="margindiv" id="margindiv"><br><br><blockquote id="note">
+            <span class="blue-grey-text darken-1">You can find your shrinked url at the end of the list</span>
           </blockquote></div> 
           <div class="">
            
@@ -63,7 +70,15 @@
         <button class="btn waves-effect waves-light  z-depth-4 blue-grey darken-3 " type="submit">Shrink</button>
     </div>
     </form>
-
+<% if(msg=='error'){%>
+  <blockquote id="errormsg">
+  <b> Please enter correct URL :( </b> 
+  </blockquote>
+<%}else if(msg=='success'){%>
+  <blockquote id="successmsg">
+   <b> URL added successfully !</b>
+  </blockquote>
+<%}%>
 <table class=" responsive-table highlight">
     <thead>
         <tr>

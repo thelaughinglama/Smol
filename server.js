@@ -5,8 +5,10 @@ const ejs=require('ejs');
 const shorturl=require('./models/schema');
 const checkstatuscode=require('./helper/checkstatuscode');
 const message={success:"Success",error:"Error"};
-app.set('view engine','ejs');
+const session = require('express-session');
 
+app.set('view engine','ejs');
+app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 mongoose.connect('mongodb://localhost/smol',{
    useNewUrlParser:'false',useUnifiedTopology:'true' 
 });
@@ -14,6 +16,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
 app.get('/',async(req,res)=>{
 //res.send("app started ");
+msg=req.session.msg;
+req.session.msg=null;
 const data= await shorturl.find({});
 //console.log(data);
 
@@ -27,24 +31,32 @@ data.forEach(e=>{
 data.forEach(e=>{
    // console.log(e.newfull)
 })
-res.render('index',{data:data});
+res.render('index',{data:data,msg:msg});
    // res.redirect('/');
 });
 
 app.set('view engine','ejs');
 app.post('/smol',async (req,res)=>{
     const url=req.body.urlshrinker
-const statuscode= await checkstatuscode.check(url);
-console.log(statuscode)
-if(statuscode==200){
-await shorturl.create({full:req.body.urlshrinker})
-res.redirect('/')
-}
-else{
-    res.redirect('/') 
+var statuscode= await checkstatuscode.check(url);
+if(statuscode!=undefined){
+    statuscode=(statuscode-statuscode%100)/100;
 }
 
-})
+console.log(statuscode)
+
+if(statuscode==2||statuscode==3||statuscode==5){
+    msg='success';
+
+await shorturl.create({full:req.body.urlshrinker})
+req.session.msg="success";
+res.redirect('/#margindiv')
+}
+else{
+    req.session.msg="error";
+    res.redirect('/#margindiv');
+
+}});
 app.get('/:shorturl',async (req,res)=>{
 const shorturls=await shorturl.findOne({short:req.params.shorturl});
 //console.log(req.params.shorturl)
@@ -58,7 +70,6 @@ res.redirect(shorturls.full);
 
 })
 app.listen(process.env.PORT||5000,()=>{
-
     console.log("server started");
 });
 

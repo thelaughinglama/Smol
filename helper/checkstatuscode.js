@@ -4,11 +4,18 @@ const request=require('got');
 
 module.exports={
   check:async function(url){
-     
+     try{
      var code=await request(url) ;
-console.log(code.statusCode);
+     return code.statusCode;
+     }
+     catch(e){
+console.log(e);
+console.log("hmmm");
+return e.statusCode;
+
+     }
   
-return code.statusCode;
+
 
 }
 }

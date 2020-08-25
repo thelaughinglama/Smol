@@ -25,13 +25,22 @@ display:flex;
   justify-content:center;
   align-items:center;
 }
-svg{font-weight:bold;max-width:600px;height:100%;}
 
 
-blockquote{
+#note{
   margin: 20px 0;
   padding-left: 1.5rem;
-  border-left: 5px solid #253441!important; /* Just change the color value and that's it*/
+  border-left: 5px solid #253441!important; 
+}
+#successmsg{
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #21b921!important;
+}
+#errormsg{
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #da0707!important;
 }
 svg{font-weight:bold;max-width:100%;
     height: 70%;
@@ -42,7 +51,7 @@ svg{font-weight:bold;max-width:100%;
   
   position: absolute;
   
-left:50%;
+left:45%;
   transform: translate(0%, -50%);
 
 }
