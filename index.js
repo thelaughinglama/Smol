@@ -45,9 +45,6 @@ data.forEach(e=>{
 res.render('index',{data:data,msg:msg});
    // res.redirect('/');
 });
-app.get('/servererror',(req,res)=>{
-    res.sendStatus(504);
-})
 
 app.set('view engine','ejs');
 app.post('/smol',async (req,res)=>{
