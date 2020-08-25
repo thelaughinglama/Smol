@@ -7,11 +7,22 @@ const checkstatuscode=require('./helper/checkstatuscode');
 const message={success:"Success",error:"Error"};
 const session = require('express-session');
 
+
+const db=require('./config/database')
+// Map global promise - get rid of warning
+mongoose.Promise = global.Promise;
+// Connect to mongoose
+mongoose.connect(db.mongoURI, {
+    useNewUrlParser:'false',useUnifiedTopology:'true' 
+})
+  .then(() => console.log(' Connected...'))
+  .catch(err => console.log(err));
+
 app.set('view engine','ejs');
 app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
-mongoose.connect('mongodb://localhost/smol',{
-   useNewUrlParser:'false',useUnifiedTopology:'true' 
-});
+// mongoose.connect('mongodb://localhost/smol',{
+//    useNewUrlParser:'false',useUnifiedTopology:'true' 
+// });
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
 app.get('/',async(req,res)=>{
@@ -34,6 +45,9 @@ data.forEach(e=>{
 res.render('index',{data:data,msg:msg});
    // res.redirect('/');
 });
+app.get('/servererror',(req,res)=>{
+    res.sendStatus(504);
+})
 
 app.set('view engine','ejs');
 app.post('/smol',async (req,res)=>{
