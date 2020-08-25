@@ -1,5 +1,4 @@
 /* bigshot one font */
-@import url(https://fonts.googleapis.com/css?family=Cabin+Condensed);
 @import url(https://fonts.googleapis.com/css2?family=Comfortaa);
 
 
@@ -13,7 +12,6 @@ html {
 body {
   background: #f1f1f1;
   background-size: cover;
-   font-family: 'Cabin Condensed', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
