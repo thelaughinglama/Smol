@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devstart": "nodemon server.js"
+    "devstart": "nodemon server.js",
+    "start":"node index.js"
   },
   "author": "",
   "license": "ISC",
