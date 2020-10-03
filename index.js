@@ -47,19 +47,20 @@ app.get('/', async (req, res) => {
 app.post('/smol', async (req, res) => {
     const url = req.body.urlshrinker
     var statuscode = await checkstatuscode.check(url);
+    if(statuscode!=102){
     if (statuscode != undefined) {
         statuscode = (statuscode - statuscode % 100) / 100;
     }
 
     console.log(statuscode)
 
-    if (statuscode == 2 || statuscode == 3 || statuscode == 5) {
+    if (statuscode == 2 || statuscode == 3 || statuscode == 5|| statuscode==1) {
         msg = 'success';
 
         await shorturl.create({ full: req.body.urlshrinker })
         req.session.msg = "success";
         res.redirect('/#margindiv')
-    }
+    }}
     else {
         req.session.msg = "error";
         res.redirect('/#margindiv');
